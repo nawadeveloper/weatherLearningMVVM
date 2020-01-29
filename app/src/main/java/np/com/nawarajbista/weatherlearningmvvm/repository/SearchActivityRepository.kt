@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import np.com.nawarajbista.weatherlearningmvvm.network.BASE_URL
 import np.com.nawarajbista.weatherlearningmvvm.network.WeatherNetwork
 import np.com.nawarajbista.weatherlearningmvvm.network.model.Location
+import np.com.nawarajbista.weatherlearningmvvm.network.model.weatherResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,20 +35,20 @@ class SearchActivityRepository(val application: Application) {
 
         val service = retrofit.create(WeatherNetwork::class.java)
 
-        service.getLocation(searchString).enqueue(object : Callback<List<Location>>{
-            override fun onFailure(call: Call<List<Location>>, t: Throwable) {
+        service.getWeather("2295424").enqueue(object : Callback<weatherResponse>{
+            override fun onFailure(call: Call<weatherResponse>, t: Throwable) {
 
                 showProgress.value = false
                 Toast.makeText(application, "Error occur on receiving data", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(
-                call: Call<List<Location>>,
-                response: Response<List<Location>>
+                call: Call<weatherResponse>,
+                response: Response<weatherResponse>
             ) {
 
-                showProgress.value = false
                 Log.d("SearchActivity", "Response: ${Gson().toJson(response.body())}")
+                showProgress.value = false
             }
 
         })

@@ -7,7 +7,7 @@ import np.com.nawarajbista.weatherlearningmvvm.repository.SearchActivityReposito
 
 class SearchActivityViewModel(application: Application): AndroidViewModel(application) {
 
-    val repository = SearchActivityRepository(application)
+    private val repository = SearchActivityRepository(application)
     val showProgress: LiveData<Boolean>
 
     init {
@@ -16,5 +16,9 @@ class SearchActivityViewModel(application: Application): AndroidViewModel(applic
 
     fun changeState() {
         repository.changeState()
+    }
+
+    fun searchLocation(searchString: String) {
+        repository.searchLocation(searchString)
     }
 }

@@ -37,6 +37,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$view_model_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$view_model_version"
 
+    
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
+
+
+    def retrofit_version = "2.6.2"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
